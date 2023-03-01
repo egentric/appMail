@@ -25,14 +25,15 @@
 
 						</div>
 						<div class="col-2">
-							<button type="submit" class="btnBlue ">Filtrer</button>
+							<button type="submit" class="btnBlue"><i class="bi bi-funnel"></i> Filtrer</button>
 						</div>
+					</form>
+					<div class="col-4">
+						<button type="button" class="btnBlue" id="copy"><i class="bi bi-clipboard"></i> Copier les Adresses</button>
 
-						<div class="col-4">
-							<button type="submit" class="btnBlue ">Copier les Adresses</button>
-						</div>
 					</div>
-				</form>
+				</div>
+
 
 				<table class="table">
 
@@ -41,24 +42,29 @@
 							{# <th>Id</th> #}
 							<th>Emails</th>
 							{# <th>Prénoms</th>
-																																																													                <th>Noms</th> #}
+																																																																											                <th>Noms</th> #}
 							<th>Entreprises</th>
 							<th>Catégories</th>
-							<th>actions</th>
+							<th>Actions</th>
 						</tr>
 					</thead>
 					<tbody>
+						{% set allEmails = '' %}
+						{# initialise une chaîne vide pour stocker les emails #}
 
 						{% for app_mail_contact in contacts %}
+                        
 							{% for category in app_mail_contact.category %}
 								{% if category_id == category.id %}
 
+									{%set allEmails = allEmails ~ app_mail_contact.appMailContactsEmail ~ ',' %}
+									{# ajoute l'email à la chaîne de caractères #}
 
 									<tr>
 										{# <td>{{ app_mail_contact.id }}</td> #}
 										<td>{{ app_mail_contact.appMailContactsEmail }}</td>
 										{# <td>{{ app_mail_contact.appMailContactsFirstName }}</td>
-																																																																								                <td>{{ app_mail_contact.appMailContactsLastName }}</td> #}
+																																																																																												                <td>{{ app_mail_contact.appMailContactsLastName }}</td> #}
 										<td>{{ app_mail_contact.appMailContactsBusiness }}</td>
 										<td>
 											<ul>
@@ -69,12 +75,8 @@
 										</td>
 
 										<td>
-											<a href="{{ path('app_mail_contacts_show', {'id': app_mail_contact.id}) }}">
-												<i class="bi bi-eye"></i>
-											</a>
-											<a href="{{ path('app_mail_contacts_edit', {'id': app_mail_contact.id}) }}">
-												<i class="bi bi-pencil-square"></i>
-											</a>
+											<a href="{{ path('app_mail_contacts_show', {'id': app_mail_contact.id}) }}" class="icone" title="Voir"><i class="bi bi-eye icone"></i></a>
+											<a href="{{ path('app_mail_contacts_edit', {'id': app_mail_contact.id}) }}"class="icone" title="Editer"><i class="bi bi-pencil-square icone"></i></a>
 										</td>
 									</tr>
 								{% endif %}
@@ -94,4 +96,26 @@
 			</div>
 		</div>
 	</div>
-{% endblock %}
+<script>
+    document.getElementById('copy').addEventListener('click', function() {
+//         {# ajoute un gestionnaire d'événements au bouton #}
+
+        var allEmails = "{{ allEmails|slice(0,-1) }}";
+//         {# récupère la chaîne de caractères et supprime la dernière virgule #}
+
+        var textarea = document.createElement('textarea');
+//         {# crée un élément textarea pour stocker les emails #}
+
+        textarea.value = allEmails;
+        document.body.appendChild(textarea);
+//         {# ajoute l'élément textarea au corps de la page #}
+
+        textarea.select();
+        document.execCommand('copy');
+//         {# copie le texte sélectionné dans le presse-papiers #}
+
+        document.body.removeChild(textarea);
+//         {# supprime l'élément textarea de la page #}
+    });
+</script>
+	{% endblock %}
