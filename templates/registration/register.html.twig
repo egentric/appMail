@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Enregistrement
+{% endblock %}
+
+{% block body %}
+	<div class="container py-5">
+		<div class="row justify-content-center mt-4">
+			<div class="col-md-6 ">
+				<div class="card">
+
+					<div class="card-header">
+
+						{% for flashError in app.flashes('verify_email_error') %}
+							<div class="alert alert-danger" role="alert">{{ flashError }}</div>
+						{% endfor %}
+						<h3>INSCRIPTION</h3>
+					</div>
+
+					<div class="card-body">
+
+						{{ form_start(registrationForm) }}
+						{# <form> #}
+						<div class="row">
+							<div class="col-lg-12">
+
+								<div class="input-group mb-3">
+									<span class="input-group-text" id="basic-addon1">Email</span>
+									{{ form_widget(registrationForm.email) }}
+								</div>
+
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="input-group mb-3">
+									<span class="input-group-text" id="basic-addon1">Prénom</span>
+									{{ form_widget(registrationForm.users_firstName) }}
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="input-group mb-3">
+									<span class="input-group-text" id="basic-addon1">Nom</span>
+									{{ form_widget(registrationForm.users_lastName) }}
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="input-group mb-3">
+									<span class="input-group-text" id="basic-addon1">Centre de formation</span>
+									{{ form_widget(registrationForm.users_center) }}
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="input-group mb-3">
+									<span class="input-group-text" id="basic-addon1">Mot de passe</span>
+									{{ form_widget(registrationForm.password.first) }}
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="input-group mb-3">
+									<span class="input-group-text" id="basic-addon1">Confirmation</span>
+									{{ form_widget(registrationForm.password.second) }}
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div
+								class="col-lg-12">
+								{# <div class="input-group mb-3"> #}
+								<span class="input-group-text" id="basic-addon1">Conditions d'utilisation</span>
+								{{ form_widget(registrationForm.agreeTerms) }}
+								{# </div> #}
+							</div>
+						</div>
+
+						<button type="submit" class="btn">Enregistrer</button>
+
+						{# </form> #}
+						{{ form_end(registrationForm) }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

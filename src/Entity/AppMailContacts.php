@@ -3,7 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\AppMailContactsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+
+
 
 #[ORM\Entity(repositoryClass: AppMailContactsRepository::class)]
 class AppMailContacts
@@ -24,6 +28,17 @@ class AppMailContacts
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $appMail_contacts_business = null;
+
+    #[ORM\ManyToOne(inversedBy: 'appMailContacts')]
+    private ?user $user = null;
+
+    #[ORM\ManyToMany(targetEntity: AppMailCategories::class, inversedBy: 'appMailContacts')]
+    private Collection $category;
+
+    public function __construct()
+    {
+        $this->category = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -74,6 +89,42 @@ class AppMailContacts
     public function setAppMailContactsBusiness(?string $appMail_contacts_business): self
     {
         $this->appMail_contacts_business = $appMail_contacts_business;
+
+        return $this;
+    }
+
+    public function getUser(): ?user
+    {
+        return $this->user;
+    }
+
+    public function setUser(?user $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AppMailCategories>
+     */
+    public function getCategory(): Collection
+    {
+        return $this->category;
+    }
+
+    public function addCategory(AppMailCategories $category): self
+    {
+        if (!$this->category->contains($category)) {
+            $this->category->add($category);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(AppMailCategories $category): self
+    {
+        $this->category->removeElement($category);
 
         return $this;
     }

@@ -1,0 +1,23 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}New AppMailCategories{% endblock %}
+
+{% block body %}
+	<div class="col-lg-8 mx-auto mt-4">
+		<div class="card rounded-4 mt-4">
+			<div class="card-header rounded-top-4">
+				<h3>NOUVELLE CATEGORIE</h3>
+			</div>
+			<div class="card-body rounded-bottom-4">
+
+
+    {{ include('app_mail_categories/_form.html.twig') }}
+
+    <a href="{{ path('app_mail_categories_index') }}" class="icone"  title="Retour à la liste"><i class="bi bi-arrow-return-left"></i></a>
+
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}

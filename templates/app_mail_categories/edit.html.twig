@@ -1,0 +1,25 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Editer Catégories
+{% endblock %}
+
+{% block body %}
+	<div class="col-lg-8 mx-auto mt-4">
+		<div class="card rounded-4 mt-4">
+			<div class="card-header rounded-top-4">
+				<h3>CATEGORIE</h3>
+			</div>
+			<div class="card-body rounded-bottom-4">
+
+				{{ include('app_mail_categories/_form.html.twig') }}
+
+				<a href="{{ path('app_mail_categories_index') }}" class="ms-2 icone" title="Retour à la liste">
+					<i class="bi bi-arrow-return-left"></i>
+				</a>
+                
+				{{ include('app_mail_categories/_delete_form.html.twig') }}
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

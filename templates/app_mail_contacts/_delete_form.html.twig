@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('app_mail_contacts_delete', {'id': app_mail_contact.id}) }}" onsubmit="return confirm('Etes vous sure de vouloir effacer ce contact?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ app_mail_contact.id) }}">
+    <button class="btn" title="Supprimer"><i class="bi bi-trash3 iconeSup"></i></button>
+</form>

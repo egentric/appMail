@@ -3,11 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
 
@@ -40,9 +44,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $users_center = null;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: AppMailContacts::class)]
+    private Collection $appMailContacts;
+
     public function __construct()
     {
         $this->roles = [self::ROLE_USER];
+        $this->appMailContacts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -147,6 +155,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUsersCenter(string $users_center): self
     {
         $this->users_center = $users_center;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AppMailContacts>
+     */
+    public function getAppMailContacts(): Collection
+    {
+        return $this->appMailContacts;
+    }
+
+    public function addAppMailContact(AppMailContacts $appMailContact): self
+    {
+        if (!$this->appMailContacts->contains($appMailContact)) {
+            $this->appMailContacts->add($appMailContact);
+            $appMailContact->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAppMailContact(AppMailContacts $appMailContact): self
+    {
+        if ($this->appMailContacts->removeElement($appMailContact)) {
+            // set the owning side to null (unless already changed)
+            if ($appMailContact->getUser() === $this) {
+                $appMailContact->setUser(null);
+            }
+        }
 
         return $this;
     }

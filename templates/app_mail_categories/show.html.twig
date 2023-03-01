@@ -1,0 +1,36 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}AppMailCategories{% endblock %}
+
+{% block body %}
+	<div class="col-lg-8 mx-auto mt-4">
+		<div class="card rounded-4 mt-4">
+			<div class="card-header rounded-top-4">
+				<h3>CATEGORIE</h3>
+			</div>
+			<div class="card-body rounded-bottom-4">
+
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ app_mail_category.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom de la catégorie</th>
+                <td>{{ app_mail_category.appMailCategoriesName }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_mail_categories_index') }}" class="icone"  title="Retour à la liste"><i class="bi bi-arrow-return-left"></i></a>
+
+    <a href="{{ path('app_mail_categories_edit', {'id': app_mail_category.id}) }}" class="icone"  title="éditer"><i class="bi bi-pencil-square"></i></a>
+
+    {{ include('app_mail_categories/_delete_form.html.twig') }}
+
+			</div>
+		</div>
+    </div>    
+{% endblock %}

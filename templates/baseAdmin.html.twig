@@ -56,11 +56,64 @@
 				</div>
 			</div>
 		</nav>
+		<section class="container-fluid">
 
-		<section>
-			{% block body %}{% endblock %}
+			<div class="row flex-nowrap mt-4">
+				<div class="col-auto col-md-2 col-xl-2 px-sm-2 px-0 mt-4 menuGauche">
+					<div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100 mt-4">
+
+						<ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+							<li class="nav-item">
+								<a href="#" class="nav-link align-middle px-0 text-light">
+									<i class="fs-4 bi-speedometer2"></i>
+									<span class="ms-1 d-none d-sm-inline">Dashboard</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="nav-link px-0 align-middle text-light">
+									<i class="bi bi-envelope-at"></i>
+									<span class="ms-1 d-none d-sm-inline">AppMail</span>
+								</a>
+
+								<ul class="collapse show nav flex-column ms-1  menubis" id="submenu1" data-bs-parent="#menu">
+									<li class="w-100">
+										<a href="{{ path('app_mail_contacts_index') }}" class="nav-link px-0 text-light">
+											<i class="bi bi-person-rolodex"></i>
+											<span class="d-none d-sm-inline">Contacts</span>
+										</a>
+									</li>
+									<li>
+										<a href="{{ path('app_mail_categories_index') }}" class="nav-link px-0 text-light menubis">
+											<i class="bi bi-bookmarks"></i>
+											<span class="d-none d-sm-inline">Catégories</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+
+
+							<li>
+								<a href="#" class="nav-link px-0 align-middle text-light">
+									<i class="fs-4 bi-people"></i>
+									<span class="ms-1 d-none d-sm-inline">Utilisateur</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="nav-link px-0 align-middle text-light">
+									<i class="fs-4 bi bi-person"></i>
+									<span class="ms-1 d-none d-sm-inline">Mon Compte</span>
+								</a>
+							</li>
+						</ul>
+
+					</div>
+				</div>
+
+
+				{% block body %}{% endblock %}
+			</div>
+
 		</section>
-
 
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 	</body>
