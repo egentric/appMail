@@ -42,11 +42,15 @@ class AppMailContactsRepository extends ServiceEntityRepository
 //    /**
 //     * @return AppMailContacts[] Returns an array of AppMailContacts objects
 //     */
-//    public function findByExampleField($value): array
+//    public function FilterContact($value1, $value2): array
 //    {
 //        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
+//            ->andWhere('a.exampleField = :val1')
+//            ->andWhere('a.exampleField = :val2')
+
+//            ->setParameter('val1', $value1)
+//            ->setParameter('val2', $value2)
+
 //            ->orderBy('a.id', 'ASC')
 //            ->setMaxResults(10)
 //            ->getQuery()

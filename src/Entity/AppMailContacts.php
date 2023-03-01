@@ -35,6 +35,7 @@ class AppMailContacts
     #[ORM\ManyToMany(targetEntity: AppMailCategories::class, inversedBy: 'appMailContacts')]
     private Collection $category;
 
+
     public function __construct()
     {
         $this->category = new ArrayCollection();

@@ -3,12 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\AppMailContacts;
+use App\Entity\AppMailCategories;
 use App\Form\AppMailContactsType;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\AppMailContactsRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
+use App\Repository\AppMailCategoriesRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -18,9 +20,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AppMailContactsController extends AbstractController
 {
 
-    
+
     #[Route('/', name: 'app_mail_contacts_index', methods: ['GET'])]
-    public function index(AppMailContactsRepository $appMailContactsRepository): Response
+    public function index(AppMailContactsRepository $appMailContactsRepository, AppMailCategoriesRepository $appMailCategoriesRepository): Response
     {
 
         $user = $this->getUser();
@@ -29,10 +31,41 @@ class AppMailContactsController extends AbstractController
         // Récupérer tous les contacts de l'utilisateur
         $contacts = $appMailContactsRepository->findBy(['user' => $userId]);
 
+        $categories = $appMailCategoriesRepository->findAll();
+
+        return $this->render('app_mail_contacts/index.html.twig', [
+            'categories' => $categories,
+            'contacts' => $contacts,
+        ]);
+    }
+
+
+    #[Route('/filter', name: 'app_mail_contacts_filter_categories', methods: ['GET'])]
+
+    public function filterbyCategory(Request $request, AppMailContactsRepository $appMailContactsRepository, AppMailCategoriesRepository $appMailCategoriesRepository)
+    {
+
+        $user = $this->getUser();
+        $userId = $user->getId();
+
+
+        $categoryId = $request->query->get('category');
+        $contacts = $appMailContactsRepository->findBy(
+            ['user' => $userId],
+
+        );
+
+        $categories = $appMailCategoriesRepository->findAll();
+// dd($categoryId);
+
         return $this->render('app_mail_contacts/index.html.twig', [
             'contacts' => $contacts,
-                ]);
+            'categories' => $categories,
+            'category_id' => $categoryId,
+        ]);
+
     }
+
 
     #[Route('/new', name: 'app_mail_contacts_new', methods: ['GET', 'POST'])]
     public function new(Request $request, AppMailContactsRepository $appMailContactsRepository): Response
@@ -86,7 +119,7 @@ class AppMailContactsController extends AbstractController
     #[Route('/{id}', name: 'app_mail_contacts_delete', methods: ['POST'])]
     public function delete(Request $request, AppMailContacts $appMailContact, AppMailContactsRepository $appMailContactsRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$appMailContact->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $appMailContact->getId(), $request->request->get('_token'))) {
             $appMailContactsRepository->remove($appMailContact, true);
         }
 
