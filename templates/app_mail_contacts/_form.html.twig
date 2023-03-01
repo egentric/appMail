@@ -26,15 +26,22 @@
 		</div>
 	</div>
 
-<div class="col-lg-6">
+	<div
+		class="col-lg-6">
 		{# <div class="input-group"> #}
-			<span class="input-group-text" id="basic-addon1">Catégories</span>
-			{{ form_widget(form.category) }}
+		<span class="input-group-text" id="basic-addon1">Catégories</span>
+		{{ form_widget(form.category) }}
 		{# </div> #}
 	</div>
 </div>
 {# {{ form_widget(form) }} #}
-<button class="btn" title="Enregistrer">
-	<i class="bi bi-save2 iconeSup"></i>
-</button>
+<div class="row ">
+	<div class="col-4 d-flex justify-content-around">
+
+		<button type="button" class="btnRed ">
+			<i class="bi bi-save2 "></i>
+			Enregistrer</a>
+	</button>
+</div>
+
 {{ form_end(form) }}

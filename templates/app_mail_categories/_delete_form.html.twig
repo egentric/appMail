@@ -1,4 +1,4 @@
 <form method="post" action="{{ path('app_mail_categories_delete', {'id': app_mail_category.id}) }}" onsubmit="return confirm('Etes vous sure de vouloir effacer cette catégorie?');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ app_mail_category.id) }}">
-    <button class="btn" title="Supprimer"><i class="bi bi-trash3 iconeSup"></i></button>
+    <button type="button" class="btnRed "><i class="bi bi-trash3"></i> Supprimer</a></button>
 </form>

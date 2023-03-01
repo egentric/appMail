@@ -1,6 +1,7 @@
 {% extends 'baseAdmin.html.twig' %}
 
-{% block title %}New AppMailCategories{% endblock %}
+{% block title %}New AppMailCategories
+{% endblock %}
 
 {% block body %}
 	<div class="col-lg-8 mx-auto mt-4">
@@ -11,13 +12,16 @@
 			<div class="card-body rounded-bottom-4">
 
 
-    {{ include('app_mail_categories/_form.html.twig') }}
+				{{ include('app_mail_categories/_form.html.twig') }}
+				<div class="col-4 d-flex justify-content-around">
 
-    <a href="{{ path('app_mail_categories_index') }}" class="icone"  title="Retour à la liste"><i class="bi bi-arrow-return-left"></i></a>
-
+					<button type="button" class="btnBlue ">
+						<a href="{{ path('app_mail_categories_index') }}" class="btn">
+							<i class="bi bi-arrow-return-left"></i>
+							Retour à la liste</a>
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
-
-
-{% endblock %}
+</div>{% endblock %}

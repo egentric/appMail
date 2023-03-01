@@ -1,6 +1,7 @@
 {% extends 'baseAdmin.html.twig' %}
 
-{% block title %}AppMailCategories{% endblock %}
+{% block title %}AppMailCategories
+{% endblock %}
 
 {% block body %}
 	<div class="col-lg-8 mx-auto mt-4">
@@ -11,26 +12,42 @@
 			<div class="card-body rounded-bottom-4">
 
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ app_mail_category.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom de la catégorie</th>
-                <td>{{ app_mail_category.appMailCategoriesName }}</td>
-            </tr>
-        </tbody>
-    </table>
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>Id</th>
+							<td>{{ app_mail_category.id }}</td>
+						</tr>
+						<tr>
+							<th>Nom de la catégorie</th>
+							<td>{{ app_mail_category.appMailCategoriesName }}</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="row ">
+					<div class="col-4 d-flex justify-content-around">
 
-    <a href="{{ path('app_mail_categories_index') }}" class="icone"  title="Retour à la liste"><i class="bi bi-arrow-return-left"></i></a>
+						<button type="button" class="btnBlue ">
+							<a href="{{ path('app_mail_categories_edit', {'id': app_mail_category.id}) }}" class="btn">
+								<i class="bi bi-pencil-square"></i>
+								Editer</a>
+						</button>
+					</div>
+					<div class="col-4 d-flex justify-content-around">
 
-    <a href="{{ path('app_mail_categories_edit', {'id': app_mail_category.id}) }}" class="icone"  title="éditer"><i class="bi bi-pencil-square"></i></a>
+						{{ include('app_mail_categories/_delete_form.html.twig') }}
+					</div>
+					<div class="col-4 d-flex justify-content-around">
+						<button type="button" class="btnBlue ">
+							<a href="{{ path('app_mail_categories_index') }}" class="btn">
+								<i class="bi bi-arrow-return-left"></i>
+								Retour à la liste</a>
+						</button>
+					</div>
 
-    {{ include('app_mail_categories/_delete_form.html.twig') }}
+				</div>
 
 			</div>
 		</div>
-    </div>    
+	</div>
 {% endblock %}
