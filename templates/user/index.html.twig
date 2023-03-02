@@ -1,0 +1,52 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Utilisateur
+{% endblock %}
+
+{% block body %}
+<div class="col-lg-8 mx-auto mt-4">
+	<div class="card rounded-4 mt-4">
+		<div class="card-header rounded-top-4">
+			<h3>LISTE DES UTILISATEURS</h3>
+		</div>
+		<div class="card-body rounded-bottom-4">
+
+			<table class="table">
+				<thead>
+					<tr>
+						{# <th>Id</th> #}
+						<th>Emails</th>
+						{# <th>Roles</th> #}
+						{# <th>Password</th> #}
+						<th>Prénoms</th>
+						<th>Noms</th>
+						{# <th>Users_center</th> #}
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for user in users %}
+						<tr>
+							{# <td>{{ user.id }}</td> #}
+							<td>{{ user.email }}</td>
+							{# <td>{{ user.roles ? user.roles|json_encode : '' }}</td> #}
+							{# <td>{{ user.password }}</td> #}
+							<td>{{ user.usersFirstName }}</td>
+							<td>{{ user.usersLastName }}</td>
+							{# <td>{{ user.usersCenter }}</td> #}
+							<td>
+								<a href="{{ path('app_user_show', {'id': user.id}) }} " class="icone" title="Voir"><i class="bi bi-eye"></i></a>
+								<a href="{{ path('app_user_edit', {'id': user.id}) }}" class="icone" title="Editer"><i class="bi bi-pencil-square"></i></a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="8">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+{% endblock %}

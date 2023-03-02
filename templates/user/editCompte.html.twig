@@ -1,0 +1,30 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Editer Mon Compte{% endblock %}
+
+{% block body %}
+<div class="col-lg-8 mx-auto mt-4">
+		<div class="card rounded-4 mt-4">
+			<div class="card-header rounded-top-4">
+				<h3>MON COMPTE</h3>
+			</div>
+			<div class="card-body rounded-bottom-4">
+
+				{{ include('user/_formCompte.html.twig', {'button_label': 'Update'}) }}
+
+				<div class="col-4 d-flex justify-content-around">
+					<a href="{{ path('app_user_index') }}">
+						<button type="button" class="btnBlue ">
+
+							<i class="bi bi-arrow-return-left"></i>
+							Retour à la liste
+						</button>
+					</a>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+</div>{% endblock %}
+

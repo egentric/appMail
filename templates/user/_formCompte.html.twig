@@ -1,0 +1,40 @@
+{{ form_start(form) }}
+<div class="row">
+	<div class="col-lg-12">
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="basic-addon1">Email</span>
+			{{ form_widget(form.email) }}
+		</div>
+	</div>
+    <div class="col-lg-6">
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="basic-addon1">Prénom</span>
+			{{ form_widget(form.users_firstName) }}
+		</div>
+	</div>
+        <div class="col-lg-6">
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="basic-addon1">Nom</span>
+			{{ form_widget(form.users_lastName) }}
+		</div>
+	</div>
+    <div class="col-lg-6">
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="basic-addon1">Centre</span>
+			{{ form_widget(form.users_center) }}
+		</div>
+	</div>
+    <div class="col-lg-6">
+		{# <div class="input-group mb-3"> #}
+			<span class="input-group-text" id="basic-addon1">Role</span>
+			{{ form_widget(form.roles) }}
+		{# </div> #}
+	</div>
+
+</div>
+				<div class="row ">
+					<div class="col-4 d-flex justify-content-around">
+
+<button type="submit" class="btnRed "><i class="bi bi-save2 "></i> Enregistrer</a></button>
+</div>
+{{ form_end(form) }}
