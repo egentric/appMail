@@ -38,24 +38,26 @@
 				</table>
 				<div class="row ">
 					<div class="col-4 d-flex justify-content-around">
+						<a href="{{ path('app_mail_contacts_edit', {'id': app_mail_contact.id}) }}">
+							<button type="button" class="btnBlue ">
 
-						<button type="button" class="btnBlue ">
-							<a href="{{ path('app_mail_contacts_edit', {'id': app_mail_contact.id}) }}" class="btn">
 								<i class="bi bi-pencil-square"></i>
-								Editer</a>
-						</button>
+								Editer
+							</button>
+						</a>
 					</div>
 					<div class="col-4 d-flex justify-content-around">
 
 						{{ include('app_mail_contacts/_delete_form.html.twig') }}
 					</div>
-                    					<div class="col-4 d-flex justify-content-around">
+					<div class="col-4 d-flex justify-content-around">
+						<a href="{{ path('app_mail_contacts_index') }}">
+							<button type="button" class="btnBlue ">
 
-						<button type="button" class="btnBlue ">
-							<a href="{{ path('app_mail_contacts_index') }}" class="btn">
 								<i class="bi bi-arrow-return-left"></i>
-								Retour à la liste</a>
-						</button>
+								Retour à la liste
+							</button>
+						</a>
 					</div>
 
 

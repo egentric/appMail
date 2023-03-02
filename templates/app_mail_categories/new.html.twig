@@ -14,12 +14,13 @@
 
 				{{ include('app_mail_categories/_form.html.twig') }}
 				<div class="col-4 d-flex justify-content-around">
+					<a href="{{ path('app_mail_categories_index') }}">
+						<button type="button" class="btnBlue ">
 
-					<button type="button" class="btnBlue ">
-						<a href="{{ path('app_mail_categories_index') }}" class="btn">
 							<i class="bi bi-arrow-return-left"></i>
-							Retour à la liste</a>
-					</button>
+							Retour à la liste
+						</button>
+					</a>
 				</div>
 			</div>
 		</div>
