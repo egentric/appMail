@@ -53,6 +53,7 @@
 			</div>
 		</div>
 
+			{% if is_granted("ROLE_ADMIN") %}		
 
 		<div class="col-md-4 mt-4">
 			<a href="{{ path('app_user_index') }}" class="rien">
@@ -83,7 +84,7 @@
 				</div>
 			</a>
 		</div>
-
+{% endif %}
 
 		<div class="col-md-4 mt-4">
 			<a href="{{ path('app_user_showCompte_id', {'id': app.user.id}) }}" class="rien">

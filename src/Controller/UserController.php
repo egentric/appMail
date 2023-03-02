@@ -9,10 +9,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 #[Route('/user')]
 class UserController extends AbstractController
 {
+    #[IsGranted('ROLE_ADMIN')]
+
     #[Route('/', name: 'app_user_index', methods: ['GET'])]
     public function index(UserRepository $userRepository): Response
     {
@@ -39,6 +43,7 @@ class UserController extends AbstractController
     //         'form' => $form,
     //     ]);
     // }
+    #[IsGranted('ROLE_ADMIN')]
 
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
     public function show(User $user): Response
@@ -47,6 +52,7 @@ class UserController extends AbstractController
             'user' => $user,
         ]);
     }
+    #[IsGranted('ROLE_ADMIN')]
 
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, UserRepository $userRepository): Response
@@ -65,6 +71,7 @@ class UserController extends AbstractController
             'form' => $form,
         ]);
     }
+    #[IsGranted('ROLE_ADMIN')]
 
     #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
     public function delete(Request $request, User $user, UserRepository $userRepository): Response
@@ -76,6 +83,8 @@ class UserController extends AbstractController
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
     }
 
+
+    #[IsGranted('ROLE_USER')]
     #[Route('/{id}/showCompte', name: 'app_user_showCompte_id', methods: ['GET'], requirements: ['id' => '\d+'])]
     public function showCompteById(User $user): Response
     {
@@ -83,9 +92,11 @@ class UserController extends AbstractController
             'user' => $user,
         ]);
     }
-                
+      
     
-    #[Route('/{id}/editCompte', name: 'app_user_editCompte', methods: ['GET', 'POST'])]
+
+    #[IsGranted('ROLE_USER')]
+    #[Route('/{id}/editCompte', name: 'app_user_editCompte', methods: ['GET', 'POST'], requirements: ['id' => '\d+'])]
     public function editCompte(Request $request, User $user, UserRepository $userRepository): Response
     {
         $form = $this->createForm(UserType::class, $user);
@@ -94,7 +105,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $userRepository->save($user, true);
 
-            return $this->redirectToRoute('app_user_showCompte', array('id' => $user->getId()));
+            return $this->redirectToRoute('app_user_showCompte_id', array('id' => $user->getId()));
         }
 
         return $this->renderForm('user/editCompte.html.twig', [
@@ -102,7 +113,6 @@ class UserController extends AbstractController
             'form' => $form,
         ]);
     }
-
 
 
 }

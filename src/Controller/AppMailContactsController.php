@@ -13,9 +13,9 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Repository\AppMailCategoriesRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
-
-
+#[IsGranted('ROLE_USER')]
 #[Route('/app/mail/contacts')]
 class AppMailContactsController extends AbstractController
 {

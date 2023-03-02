@@ -88,12 +88,16 @@
             </li>
           </ul>
         </li>
+		{% if is_granted("ROLE_ADMIN") %}		
+
         <li>
           <a href="{{ path('app_user_index') }}" class="nav-link px-0 align-middle text-light">
             <i class="fs-4 bi-people"></i>
             <span class="ms-1 d-none d-sm-inline">Utilisateur</span>
           </a>
         </li>
+
+		{% endif %}
                 <li>
                     <a href="{{ path('app_user_showCompte_id', {'id': app.user.id}) }}" class="nav-link px-0 align-middle text-light">
                         <i class="fs-4 bi bi-person"></i>
