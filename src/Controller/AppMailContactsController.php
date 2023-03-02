@@ -58,7 +58,7 @@ class AppMailContactsController extends AbstractController
         $categories = $appMailCategoriesRepository->findAll();
 // dd($categoryId);
 
-        return $this->render('app_mail_contacts/index.html.twig', [
+        return $this->render('app_mail_contacts/indexFilter.html.twig', [
             'contacts' => $contacts,
             'categories' => $categories,
             'category_id' => $categoryId,

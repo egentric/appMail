@@ -49,7 +49,7 @@
 																																																																																		                <th>Noms</th> #}
 							<th>Entreprises</th>
 							<th>Catégories</th>
-							<th>actions</th>
+							<th>Actions</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -58,32 +58,38 @@
 
 						{% for app_mail_contact in contacts %}
 
+							{% for category in app_mail_contact.category %}
+								{% if category_id == category.id %}
+
 									{%set allEmails = allEmails ~ app_mail_contact.appMailContactsEmail ~ ',' %}
 									{# ajoute l'email à la chaîne de caractères #}
 
-							<tr>
-								{# <td>{{ app_mail_contact.id }}</td> #}
-								<td>{{ app_mail_contact.appMailContactsEmail }}</td>
-								{# <td>{{ app_mail_contact.appMailContactsFirstName }}</td>
-								                <td>{{ app_mail_contact.appMailContactsLastName }}</td> #}
-								<td>{{ app_mail_contact.appMailContactsBusiness }}</td>
-								<td>
-									<ul>
-										{% for app_mail_category in app_mail_contact.category %}
-											<li>{{ app_mail_category.appMailCategoriesName }}</li>
-										{% endfor %}
-									</ul>
-								</td>
-								<td>
-											<a href="{{ path('app_mail_contacts_show', {'id': app_mail_contact.id}) }}" class="icone" title="Voir"><i class="bi bi-eye icone"></i></a>
-											<a href="{{ path('app_mail_contacts_edit', {'id': app_mail_contact.id}) }}" class="icone" title="Editer"><i class="bi bi-pencil-square icone"></i></a>
-								</td>
-							</tr>
-						{% else %}
-							<tr>
-								<td colspan="6">no records found</td>
-							</tr>
+									<tr>
+										{# <td>{{ app_mail_contact.id }}</td> #}
+										<td>{{ app_mail_contact.appMailContactsEmail }}</td>
+										{# <td>{{ app_mail_contact.appMailContactsFirstName }}</td>
+																																																																																																						                <td>{{ app_mail_contact.appMailContactsLastName }}</td> #}
+										<td>{{ app_mail_contact.appMailContactsBusiness }}</td>
+										<td>
+											<ul>
+												{% for app_mail_category in app_mail_contact.category %}
+													<li>{{ app_mail_category.appMailCategoriesName }}</li>
+												{% endfor %}
+											</ul>
+										</td>
+
+										<td>
+											<a href="{{ path('app_mail_contacts_show', {'id': app_mail_contact.id}) }}" class="icone" title="Voir"><i class="bi bi-eye icone"></i>
+											</a>
+											<a href="{{ path('app_mail_contacts_edit', {'id': app_mail_contact.id}) }}" class="icone" title="Editer"><i class="bi bi-pencil-square icone"></i>
+											</a>
+										</td>
+									</tr>
+								{% endif %}
+							{% endfor %}
+
 						{% endfor %}
+
 					</tbody>
 				</table>
 				<a href="{{ path('app_mail_contacts_new') }}">
@@ -94,7 +100,7 @@
 			</div>
 		</div>
 	</div>
-		<script>
+	<script>
 		document.getElementById('copy').addEventListener('click', function () {
 		// ajoute un gestionnaire d'événements au bouton
 

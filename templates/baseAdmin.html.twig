@@ -70,26 +70,27 @@
 								</a>
 							</li>
 							<li>
-								<a href="#" class="nav-link px-0 align-middle text-light">
-									<i class="fs-4 bi bi-envelope-at"></i>
-									<span class="ms-1 d-none d-sm-inline">AppMail</span>
-								</a>
+	<a href="#" class="nav-link px-0 align-middle text-light" data-bs-toggle="collapse" data-bs-target="#submenu1" aria-expanded="false">
+		<i class="fs-4 bi bi-envelope-at"></i>
+		<span class="ms-1 d-none d-sm-inline">AppMail</span>
+	</a>
 
-								<ul class="collapse show nav flex-column ms-1  menubis" id="submenu1" data-bs-parent="#menu">
-									<li class="w-100">
-										<a href="{{ path('app_mail_contacts_index') }}" class="nav-link px-0 text-light">
-											<i class="bi bi-person-rolodex"></i>
-											<span class="d-none d-sm-inline">Contacts</span>
-										</a>
-									</li>
-									<li>
-										<a href="{{ path('app_mail_categories_index') }}" class="nav-link px-0 text-light menubis">
-											<i class="bi bi-bookmarks"></i>
-											<span class="d-none d-sm-inline">Catégories</span>
-										</a>
-									</li>
-								</ul>
-							</li>
+	<ul class="collapse show nav flex-column ms-1 menubis" id="submenu1" data-bs-parent="#menu">
+		<li class="w-100">
+			<a href="{{ path('app_mail_contacts_index') }}" class="nav-link px-0 text-light">
+				<i class="bi bi-person-rolodex"></i>
+				<span class="d-none d-sm-inline">Contacts</span>
+			</a>
+		</li>
+		<li>
+			<a href="{{ path('app_mail_categories_index') }}" class="nav-link px-0 text-light menubis">
+				<i class="bi bi-bookmarks"></i>
+				<span class="d-none d-sm-inline">Catégories</span>
+			</a>
+		</li>
+	</ul>
+</li>
+
 
 
 							<li>
