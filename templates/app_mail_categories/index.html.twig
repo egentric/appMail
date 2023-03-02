@@ -26,12 +26,8 @@
 								{# <td>{{ app_mail_category.id }}</td> #}
 								<td>{{ app_mail_category.appMailCategoriesName }}</td>
 								<td>
-									<a href="{{ path('app_mail_categories_show', {'id': app_mail_category.id}) }}" class="icone" title="Voir">
-										<i class="bi bi-eye"></i>
-									</a>
-									<a href="{{ path('app_mail_categories_edit', {'id': app_mail_category.id}) }}" class="icone" title="Editer">
-										<i class="bi bi-pencil-square"></i>
-									</a>
+									<a href="{{ path('app_mail_categories_show', {'id': app_mail_category.id}) }}" class="icone" title="Voir"><i class="bi bi-eye"></i></a>
+									<a href="{{ path('app_mail_categories_edit', {'id': app_mail_category.id}) }}" class="icone" title="Editer"><i class="bi bi-pencil-square"></i></a>
 								</td>
 							</tr>
 						{% else %}

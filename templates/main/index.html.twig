@@ -4,62 +4,103 @@
 {% endblock %}
 
 {% block body %}
-<div class="row flex-wrap mt-4">
-	<div class="col-md-3 mt-4">
-		<div class="card rounded-4 mt-4">
-			<div class="card-header rounded-top-4">
-				<h3>APP MAIL</h3>
-			</div>
-			<div class="card-body rounded-bottom-4">
-				<p>
-					L'Appli qui vous permet de copier des listes de contact.</p>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-3 mt-4">
-		<div class="card rounded-4 mt-4">
-			<div class="card-header rounded-top-4">
-				<h3>APP MAIL</h3>
-			</div>
-			<div class="card-body rounded-bottom-4">
-				<p>
-					L'Appli qui vous permet de copier des listes de contact.</p>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-3 mt-4">
-		<div class="card rounded-4 mt-4">
-			<div class="card-header rounded-top-4">
-				<h3>APP MAIL</h3>
-			</div>
-			<div class="card-body rounded-bottom-4">
-				<p>
-					L'Appli qui vous permet de copier des listes de contact.</p>
-			</div>
-		</div>
-	</div>
+	<div class="row col-md-10 flex-wrap mt-4">
 
-	<div class="col-md-3 mt-4">
-		<div class="card rounded-4 mt-4">
-			<div class="card-header rounded-top-4">
-				<h3>UTILISATEURS</h3>
-			</div>
-			<div class="card-body rounded-bottom-4">
-				<p>
-					Gestion des utilisateurs.</p>
+		<div class="col-md-4 mt-4">
+			<div class="card rounded-4 mt-4">
+				<div class="card-header rounded-top-4">
+					<h3>APP MAIL</h3>
+				</div>
+				<div class="card-body rounded-bottom-4">
+					<p>
+						L'Appli qui vous permet de copier les listes de vos contacts.</p>
+					<ul>
+						<li>
+							<a href="{{ path('app_mail_contacts_index') }}" class="rien">Liste de vos contacts</li>
+						</li>
+						<li>
+							<a href="{{ path('app_mail_categories_index') }}" class="rien">Les Catégories</a>
+						</li>
+					</ul>
+
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="col-md-3 mt-4">
-		<div class="card rounded-4 mt-4">
-			<div class="card-header rounded-top-4">
-				<h3>MON COMPTE</h3>
-			</div>
-			<div class="card-body rounded-bottom-4">
-				<p>
-					Gestion de mon compte.</p>
+
+
+		<div class="col-md-4 mt-4">
+			<div class="card rounded-4 mt-4">
+				<div class="card-header rounded-top-4">
+					<h3>Exemple Appli2</h3>
+				</div>
+				<div class="card-body rounded-bottom-4">
+					<p>
+						L'Appli 2</p>
+				</div>
 			</div>
 		</div>
+
+
+		<div class="col-md-4 mt-4">
+			<div class="card rounded-4 mt-4">
+				<div class="card-header rounded-top-4">
+					<h3>Exemple Apli3</h3>
+				</div>
+				<div class="card-body rounded-bottom-4">
+					<p>
+						L'Appli 3</p>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="col-md-4 mt-4">
+			<a href="{{ path('app_user_index') }}" class="rien">
+				<div class="card rounded-4 mt-4">
+					<div class="card-header rounded-top-4">
+						<h3>UTILISATEURS</h3>
+					</div>
+					<div class="card-body rounded-bottom-4  table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Emails</th>
+									<th>Prénoms</th>
+									<th>Noms</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for user in users %}
+									<tr>
+										<td>{{ user.email }}</td>
+										<td>{{ user.usersFirstName }}</td>
+										<td>{{ user.usersLastName }}</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</a>
+		</div>
+
+
+		<div class="col-md-4 mt-4">
+			<a href="{{ path('app_user_showCompte_id', {'id': app.user.id}) }}" class="rien">
+
+				<div class="card rounded-4 mt-4">
+					<div class="card-header rounded-top-4">
+						<h3>MON COMPTE</h3>
+					</div>
+					<div class="card-body rounded-bottom-4">
+						<a href="{{ path('app_user_showCompte_id', {'id': app.user.id}) }}" class="rien">
+							Gestion de mon compte.
+						</a>
+					</div>
+				</div>
+			</a>
+		</div>
+
+
 	</div>
-</div>    
 {% endblock %}
