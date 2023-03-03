@@ -28,6 +28,7 @@ class AppMailContactsType extends AbstractType
             ->add('appMail_contacts_email')
             ->add('appMail_contacts_firstName')
             ->add('appMail_contacts_lastName')
+            ->add('phone')
             ->add('appMail_contacts_business')
             ->add('category', EntityType::class, [
                 'class' => AppMailCategories::class,

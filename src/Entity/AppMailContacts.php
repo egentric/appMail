@@ -35,6 +35,9 @@ class AppMailContacts
     #[ORM\ManyToMany(targetEntity: AppMailCategories::class, inversedBy: 'appMailContacts')]
     private Collection $category;
 
+    #[ORM\Column(length: 15, nullable: true)]
+    private ?string $phone = null;
+
 
     public function __construct()
     {
@@ -126,6 +129,18 @@ class AppMailContacts
     public function removeCategory(AppMailCategories $category): self
     {
         $this->category->removeElement($category);
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?string $phone): self
+    {
+        $this->phone = $phone;
 
         return $this;
     }
