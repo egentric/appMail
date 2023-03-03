@@ -73,11 +73,9 @@
 																																																																																																						                <td>{{ app_mail_contact.appMailContactsLastName }}</td> #}
 										<td>{{ app_mail_contact.appMailContactsBusiness }}</td>
 										<td>
-											<ul>
 												{% for app_mail_category in app_mail_contact.category %}
-													<li>{{ app_mail_category.appMailCategoriesName }}</li>
+											<a href="filter?category={{ app_mail_category.id }}"><button type="button" class="btnBlueF">{{ app_mail_category.appMailCategoriesName }}</button></br>
 												{% endfor %}
-											</ul>
 										</td>
 
 										<td>
