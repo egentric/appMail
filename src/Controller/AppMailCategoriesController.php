@@ -18,21 +18,34 @@ class AppMailCategoriesController extends AbstractController
     #[Route('/', name: 'app_mail_categories_index', methods: ['GET'])]
     public function index(AppMailCategoriesRepository $appMailCategoriesRepository): Response
     {
+        $user = $this->getUser();
+        $userId = $user->getId();
+
+                // Récupérer tous les catégories de l'utilisateur
+                $categories = $appMailCategoriesRepository->findBy(['user' => $userId]);
+
+
+
         return $this->render('app_mail_categories/index.html.twig', [
-            'app_mail_categories' => $appMailCategoriesRepository->findAll(),
+            'categories' => $categories,
         ]);
     }
 
     #[Route('/new', name: 'app_mail_categories_new', methods: ['GET', 'POST'])]
     public function new(Request $request, AppMailCategoriesRepository $appMailCategoriesRepository): Response
     {
+
+        $user = $this->getUser();
+
+
         $appMailCategory = new AppMailCategories();
         $form = $this->createForm(AppMailCategoriesType::class, $appMailCategory);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $appMailCategoriesRepository->save($appMailCategory, true);
+            $appMailCategory->setUser($user);
 
+            $appMailCategoriesRepository->save($appMailCategory, true);
             return $this->redirectToRoute('app_mail_categories_index', [], Response::HTTP_SEE_OTHER);
         }
 

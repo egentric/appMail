@@ -39,7 +39,20 @@
             </tr>
                         <tr>
                 <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>
+                {# <pre>
+                    {{ dump(user.roles) }}
+                </pre> #}
+                    {% if user.roles %}
+                        {% if 'ROLE_ADMIN' in user.roles %}
+                        Administrateur
+                        {% elseif 'ROLE_USER' in user.roles %}
+                        Utilisateur
+                        {% endif %}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
             </tr>
 
         </tbody>

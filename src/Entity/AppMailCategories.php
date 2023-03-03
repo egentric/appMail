@@ -21,6 +21,9 @@ class AppMailCategories
     #[ORM\ManyToMany(targetEntity: AppMailContacts::class, mappedBy: 'category')]
     private Collection $appMailContacts;
 
+    #[ORM\ManyToOne(inversedBy: 'category')]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->appMailContacts = new ArrayCollection();
@@ -66,6 +69,18 @@ class AppMailCategories
         if ($this->appMailContacts->removeElement($appMailContact)) {
             $appMailContact->removeCategory($this);
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

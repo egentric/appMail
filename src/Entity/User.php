@@ -47,10 +47,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: AppMailContacts::class)]
     private Collection $appMailContacts;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: AppMailCategories::class)]
+    private Collection $category;
+
     public function __construct()
     {
         $this->roles = [self::ROLE_USER];
         $this->appMailContacts = new ArrayCollection();
+        $this->category = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -183,6 +187,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($appMailContact->getUser() === $this) {
                 $appMailContact->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AppMailCategories>
+     */
+    public function getCategory(): Collection
+    {
+        return $this->category;
+    }
+
+    public function addCategory(AppMailCategories $category): self
+    {
+        if (!$this->category->contains($category)) {
+            $this->category->add($category);
+            $category->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(AppMailCategories $category): self
+    {
+        if ($this->category->removeElement($category)) {
+            // set the owning side to null (unless already changed)
+            if ($category->getUser() === $this) {
+                $category->setUser(null);
             }
         }
 

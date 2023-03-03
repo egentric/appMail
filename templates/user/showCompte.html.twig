@@ -13,10 +13,12 @@
 
 <table class="table">
         <tbody>
+        		{% if is_granted("ROLE_ADMIN") %}	
             <tr>
                 <th>Id</th>
                 <td>{{ user.id }}</td>
             </tr>
+            {% endif %}
             <tr>
                 <th>Email</th>
                 <td>{{ user.email }}</td>
@@ -37,10 +39,13 @@
                 <th>Centre</th>
                 <td>{{ user.usersCenter }}</td>
             </tr>
+                    		{% if is_granted("ROLE_ADMIN") %}	
+
                         <tr>
                 <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>Administrateur</td>
             </tr>
+            {% endif %}
 
         </tbody>
     </table>
@@ -51,15 +56,6 @@
 						<button type="button" class="btnBlue "><i class="bi bi-pencil-square"></i>
 								Editer
 						</button></a>
-					</div>
-					<div class="col-4 d-flex justify-content-around">
-						<a href="{{ path('app_user_index') }}">
-							<button type="button" class="btnBlue ">
-
-								<i class="bi bi-arrow-return-left"></i>
-								Retour à la liste
-							</button>
-						</a>
 					</div>
 
 				</div>

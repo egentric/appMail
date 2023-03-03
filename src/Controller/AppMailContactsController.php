@@ -32,11 +32,13 @@ class AppMailContactsController extends AbstractController
         $contacts = $appMailContactsRepository->findBy(['user' => $userId]);
 
         $categories = $appMailCategoriesRepository->findAll();
+        // dd($categories);
 
         return $this->render('app_mail_contacts/index.html.twig', [
             'categories' => $categories,
             'contacts' => $contacts,
         ]);
+
     }
 
 

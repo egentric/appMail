@@ -19,7 +19,9 @@
 								<option disabled selected>Filtrer par catégorie</option>
 
 								{% for app_mail_category in categories %}
+									{% if app.user.id == app_mail_category.user.id %}
 									<option value="{{ app_mail_category.id }}">{{ app_mail_category.appMailCategoriesName }}</option>
+									{% endif %}
 								{% endfor %}
 							</select>
 
@@ -79,10 +81,8 @@
 										</td>
 
 										<td>
-											<a href="{{ path('app_mail_contacts_show', {'id': app_mail_contact.id}) }}" class="icone" title="Voir"><i class="bi bi-eye icone"></i>
-											</a>
-											<a href="{{ path('app_mail_contacts_edit', {'id': app_mail_contact.id}) }}" class="icone" title="Editer"><i class="bi bi-pencil-square icone"></i>
-											</a>
+											<a href="{{ path('app_mail_contacts_show', {'id': app_mail_contact.id}) }}" class="icone" title="Voir"><i class="bi bi-eye icone"></i></a>
+											<a href="{{ path('app_mail_contacts_edit', {'id': app_mail_contact.id}) }}" class="icone" title="Editer"><i class="bi bi-pencil-square icone"></i></a>
 										</td>
 									</tr>
 								{% endif %}

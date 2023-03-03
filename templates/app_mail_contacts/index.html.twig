@@ -17,9 +17,11 @@
 
 							<select class="form-select" aria-label="select Catégories" name="category">
 								<option disabled selected>Filtrer par catégorie</option>
-
+								
 								{% for app_mail_category in categories %}
+									{% if app.user.id == app_mail_category.user.id %}
 									<option value="{{ app_mail_category.id }}">{{ app_mail_category.appMailCategoriesName }}</option>
+									{% endif %}
 								{% endfor %}
 							</select>
 

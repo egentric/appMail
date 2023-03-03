@@ -19,9 +19,10 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $user = $this->token->getToken()->getUser();
-        $userId = $user->getId();
+        // $userId = $user->getId();
+        $role=$user->getRoles();
         // dd($user->getRoles());
-        if ($user->getRoles() == 'ROLE_ADMIN') {
+        if ($role[0] == 'ROLE_ADMIN') {
 
             $builder
                 ->add('email')
