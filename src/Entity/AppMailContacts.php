@@ -36,7 +36,7 @@ class AppMailContacts
     private Collection $category;
 
     #[ORM\Column(length: 15, nullable: true)]
-    private ?string $phone = null;
+    private ?string $appMail_contacts_phone = null;
 
 
     public function __construct()
@@ -133,15 +133,16 @@ class AppMailContacts
         return $this;
     }
 
-    public function getPhone(): ?string
+    public function getAppMailContactsPhone(): ?string
     {
-        return $this->phone;
+        return $this->appMail_contacts_phone;
     }
 
-    public function setPhone(?string $phone): self
+    public function setAppMailContactsPhone(?string $appMail_contacts_phone): self
     {
-        $this->phone = $phone;
+        $this->appMail_contacts_phone = $appMail_contacts_phone;
 
         return $this;
     }
 }
+
