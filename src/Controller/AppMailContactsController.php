@@ -12,8 +12,9 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use App\Repository\AppMailCategoriesRepository;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[IsGranted('ROLE_USER')]
 #[Route('/app/mail/contacts')]
@@ -54,10 +55,16 @@ class AppMailContactsController extends AbstractController
         $categoryId = $request->query->get('category');
         $contacts = $appMailContactsRepository->findBy(
             ['user' => $userId],
-
         );
 
+        // Vérifiez si aucune catégorie n'a été sélectionnée
+        if (empty($categoryId)) {
+            // Redirigez l'utilisateur vers une autre route
+            return new RedirectResponse($this->generateUrl('app_mail_contacts_index'));
+        }
+
         $categories = $appMailCategoriesRepository->findAll();
+
 // dd($categoryId);
 
         return $this->render('app_mail_contacts/indexFilter.html.twig', [
