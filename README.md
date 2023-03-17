@@ -3,7 +3,6 @@
 <p>
 Appli de tri d'adresse et de copie d'email
 <ul>
-<li>
 <li>Filtre categorie</li>
 <li>copie des emails</li>
 <li>gestion des roles</li>
